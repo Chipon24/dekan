@@ -15,6 +15,15 @@
         config: "/admin/config.yml"  // Ваш файл конфігурації
       });
     </script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      window.netlifyIdentity = window.netlifyIdentity || {};
+      netlifyIdentity.on('init', function () {
+        if (!netlifyIdentity.currentUser()) {
+          netlifyIdentity.open('reset');  // Відкриває вікно для скидання пароля
+        }
+      });
+    </script>
 </body>
 </html>
 
