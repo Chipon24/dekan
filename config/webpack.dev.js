@@ -158,11 +158,12 @@ const config = {
         })),
         new CopyPlugin({
             patterns: [
-                {
-                    from: path.resolve(__dirname, 'admin'), to: 'admin',
-                    noErrorOnMissing: true,
-                    force: true
-                },
+				{
+					from: path.resolve(__dirname, '../admin'), // тепер вказуємо правильний відносний шлях до папки admin
+					to: path.resolve(__dirname, '../dist/admin'), // вказуємо папку dist для копіювання
+					noErrorOnMissing: true,
+					force: true
+				},
                 {
                     from: `${srcFolder}/img`, to: `img`,
                     noErrorOnMissing: true,

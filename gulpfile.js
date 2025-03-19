@@ -32,6 +32,19 @@ import { sprite } from "./config/gulp-tasks/sprite.js";
 import { gitignore } from "./config/gulp-tasks/gitignore.js";
 import { otfToTtf, ttfToWoff2, woff2Copy, fontsStyle } from "./config/gulp-tasks/fonts.js";
 
+// Таск для копіювання папки admin
+const copyAdmin = (done) => {
+    const adminPath = `./admin`; // Шлях до папки
+    if (fs.existsSync(adminPath)) {
+        return app.gulp.src(`${adminPath}/**/*`)
+            .pipe(app.gulp.dest(`${app.path.buildFolder}/admin`));
+    } else {
+        console.log('❌ Папка /admin відсутня. Пропускаємо копіювання.');
+        done(); // Завершуємо таск без помилки
+    }
+};
+
+
 // Послідовна обробка шрифтів
 const fonts = gulp.series(reset, function (done) {
 	// Якщо існує папка fonts
@@ -44,24 +57,17 @@ const fonts = gulp.series(reset, function (done) {
 
 // Порядок виконання завдань для режиму розробник
 const devTasks = gulp.series(fonts, gitignore);
+
 // Порядок виконання завдань для режиму продакшн
 let buildTasks;
 if (process.argv.includes('--nowebp')) {
-	buildTasks = gulp.series(fonts, jsDev, js, gulp.parallel(html, css, gulp.parallel(WebP, imagesOptimize, copySvg), gitignore));
+	buildTasks = gulp.series(fonts, jsDev, js, gulp.parallel(html, css, gulp.parallel(WebP, imagesOptimize, copySvg), copyAdmin, gitignore));
 } else {
-	buildTasks = gulp.series(fonts, jsDev, js, gulp.parallel(html, css, gulp.parallel(WebP, copySvg), gitignore));
+	buildTasks = gulp.series(fonts, jsDev, js, gulp.parallel(html, css, gulp.parallel(WebP, copySvg), copyAdmin, gitignore));
 }
 
-
 // Експорт завдань
-export { html }
-export { css }
-export { js }
-export { jsDev }
-export { fonts }
-export { sprite }
-export { ftp }
-export { zip }
+export { html, css, js, jsDev, fonts, sprite, ftp, zip, copyAdmin };
 
 // Побудова сценаріїв виконання завдань
 const development = devTasks;
@@ -70,16 +76,7 @@ const deployFTP = gulp.series(buildTasks, ftp);
 const deployZIP = gulp.series(buildTasks, zip);
 
 // Експорт сценаріїв
-export { development }
-export { build }
-export { deployFTP }
-export { deployZIP }
+export { development, build, deployFTP, deployZIP };
 
 // Виконання сценарію за замовчуванням
 gulp.task('default', development);
-
-
-
-
-
-
