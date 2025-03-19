@@ -1,18 +1,20 @@
 backend:
   name: git-gateway
   branch: main # або інша гілка, де зберігається контент
+  base_url: "https://78ea-194-44-38-5.ngrok-free.app"
 
-media_folder: "src/assets/images"  # Де зберігати зображення 111www
-public_folder: "/assets/images" 
+media_folder: "src/assets/images"  # Де зберігати зображення
+public_folder: "/assets/images"
 
 collections:
   - name: "posts"
     label: "Posts"
-    folder: "content/posts"
-    create: true
+    folder: "content/posts"  # Місце для зберігання постів
+    create: true  # Дозволяє створювати нові пости
     slug: "{{slug}}"
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "date", label: "Date", widget: "datetime" }
-      - { name: "body", label: "Body", widget: "markdown" }
+      - { name: "body", label: "Body", widget: "string" }  # Замість markdown використовується string для звичайного тексту
+
 
