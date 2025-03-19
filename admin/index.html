@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel2www</title>
+    <title>Admin Panel - Decap CMS</title>
 </head>
 <body>
+    <!-- Підключення Decap CMS -->
     <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
+    
+    <script>
+      // Налаштування для Decap CMS
+      DecapCMS.init({
+        config: "/admin/config.yml"  // Ваш файл конфігурації
+      });
+    </script>
 </body>
 </html>
+
