@@ -6,24 +6,26 @@
     <title>Admin Panel - Decap CMS</title>
 </head>
 <body>
-    <!-- Підключення Decap CMS -->
     <script src="https://unpkg.com/decap-cms@latest/dist/decap-cms.js"></script>
-    
-    <script>
-      // Налаштування для Decap CMS
-      DecapCMS.init({
-        config: "/admin/config.yml"  // Ваш файл конфігурації
-      });
-    </script>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-      window.netlifyIdentity = window.netlifyIdentity || {};
-      netlifyIdentity.on('init', function () {
-        if (!netlifyIdentity.currentUser()) {
-          netlifyIdentity.open('reset');  // Відкриває вікно для скидання пароля
-        }
-      });
-    </script>
+
+<script>
+  // Налаштування для Decap CMS
+  DecapCMS.init({
+    config: "/admin/config.yml"  // Ваш файл конфігурації
+  });
+</script>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  window.netlifyIdentity = window.netlifyIdentity || {};
+  netlifyIdentity.on('init', function () {
+    if (!netlifyIdentity.currentUser()) {
+      // Спочатку відкриваємо форму входу
+      netlifyIdentity.open();  // Замість 'reset' — відкривається форма для входу
+    }
+  });
+</script>
+
 </body>
 </html>
 
