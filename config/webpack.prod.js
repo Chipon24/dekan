@@ -161,7 +161,11 @@ const config = {
 				}, {
 					from: `${paths.src}/favicon.ico`, to: `../`,
 					noErrorOnMissing: true
-				}
+				},
+				{
+					from: `${paths.src}/admin`, to: `${paths.build}/admin`, // Змінений шлях для prod
+					noErrorOnMissing: true
+				  }
 			],
 		})
 	],
