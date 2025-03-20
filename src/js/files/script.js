@@ -3,7 +3,7 @@ import { isMobile } from "./functions.js";
 // Підключення списку активних модулів
 import { flsModules } from "./modules.js";
 
-fetch('/files/data/перший-пост.json')
+fetch('content/posts/перший-пост.json')
     .then(response => response.json())
     .then(data => {
         const post = data[0];
