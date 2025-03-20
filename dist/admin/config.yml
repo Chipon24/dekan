@@ -9,13 +9,13 @@ public_folder: "/assets/images"
 collections:
   - name: "posts"
     label: "Posts"
-    folder: "content/posts"  # Місце для зберігання постів
+    folder: "src/content/posts"  # Місце для зберігання постів
     create: true  # Дозволяє створювати нові пости
     format: "json"
     slug: "{{slug}}"
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "date", label: "Date", widget: "datetime" }
-      - { name: "body", label: "Body", widget: "string" }  # Замість markdown використовується string для звичайного тексту
+      - { name: "body", label: "Body", widget: "markdown" }  # Замість markdown використовується string для звичайного тексту
 
 
